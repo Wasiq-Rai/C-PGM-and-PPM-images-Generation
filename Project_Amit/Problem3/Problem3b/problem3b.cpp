@@ -13,7 +13,7 @@ int main() {
     complex<double> CENTER(0.0, 0.0);
 
     ofstream fout;
-    fout.open("problem3a.pgm");
+    fout.open("problem3b.pgm");
     
     // Write PGM header
     fout << "P2" << endl;
@@ -22,9 +22,8 @@ int main() {
 
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
-            // Transform to user coordinates as per document
-            double x = (j - WIDTH / 2.0) / (0.125 * ZOOM * WIDTH);
-            double y = (i - HEIGHT / 2.0) / (0.125 * ZOOM * HEIGHT);
+            double x = (j - WIDTH / 2.0) / (0.125 * ZOOM * WIDTH) + real(CENTER);
+            double y = (i - HEIGHT / 2.0) / (0.125 * ZOOM * HEIGHT) + imag(CENTER);
             
             complex<double> c(x, y);
             complex<double> z(0.0, 0.0);
@@ -38,7 +37,9 @@ int main() {
             if (iterations == MAX_ITERATIONS) {
                 fout << 0 <<" ";  // Black for points in the set
             } else {
-                fout << 255<<" " ;  // White for points outside the set
+                // Continuous coloring
+                int color = static_cast<int>(255.0 * iterations / MAX_ITERATIONS);
+                fout << color << " ";
             }
         }
         fout << endl;
