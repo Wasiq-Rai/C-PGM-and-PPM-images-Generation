@@ -4,9 +4,9 @@
 using namespace std;
 
 int main() {
-    const int WIDTH = 150;
-    const int HEIGHT = 100;
-    const int CIRCLE_RADIUS = 30;  // 3/5 of height
+    const int WIDTH = 600;
+    const int HEIGHT = 400;
+    const int CIRCLE_RADIUS = 120;  // 3/5 of height
 
     ofstream fout;
     fout.open("problem1d.ppm");
